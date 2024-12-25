@@ -13,9 +13,8 @@ ENV = os.getenv("ENV")
 if not ENV:
     raise ValueError("ENV variable is not set in the .env file!")
 else:
-    print(f"Application running in {ENV} mode.")  # Debugging: Print the environment mode
+    print(f"Application running in {ENV.strip().lower()} mode.")  # Debugging: Print the environment mode
 
-# Use `sensor_dev.py` if in development mode
 if ENV.strip().lower() == "development":
     print("Using simulated sensor data (development mode).")
     from app.sensor_dev import read_sensors, control_led, control_pump
@@ -40,7 +39,6 @@ if ENV.strip().lower() == "development":
                 break
 
 elif ENV.strip().lower() == "production":
-    # Production logic with real sensors
     try:
         print("Using real sensor data (production mode).")
         import board
@@ -125,13 +123,12 @@ elif ENV.strip().lower() == "production":
                     break
 
     except ImportError as e:
-        # Fallback to simulated mode
         print(f"Error importing Raspberry Pi libraries: {e}")
-        print("Falling back to simulated sensor data (development mode).")
-        from app.sensor_dev import read_sensors, control_led, control_pump
+        print("Ensure your hardware setup is correct and all necessary libraries are installed.")
+        raise e  # Remove fallback to ensure production mode doesn't silently fail
 
 else:
-    raise ValueError("Invalid ENV value in .env file. Use 'development' or 'production'.")
+    raise ValueError(f"Invalid ENV value: {ENV}. Must be 'development' or 'production'.")
 
 # Run the main loop in a background thread
 if __name__ == "__main__":
