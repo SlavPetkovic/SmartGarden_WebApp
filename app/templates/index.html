@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartGarden Dashboard</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="weather-box">
+            <div class="box">
+                <div class="info-weather">
+                    <div class="weather">
+                        <p class="city" id="city-name">SmartGarden</p>
+                        <div id="weather-icon" class="weather-icon bx-icon"></div>
+                        <p class="temperature" id="temperature">--<span>°C</span></p>
+                        <p class="description" id="description">--</p>
+                        <p class="current_date" id="current-date">--</p>
+                        <p class="current_time" id="current-time">--</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="weather-details">
+            <div class="group1">
+                <div class="humidity">
+                    <i class='bx bx-water'></i>
+                    <div class="text">
+                        <div class="info-humidity">
+                            <p class="temperature" id="humidity">--<span>%</span></p>
+                        </div>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+
+                <div class="pressure">
+                    <i class='bx bx-wind'></i>
+                    <div class="text">
+                        <div class="info-wind">
+                            <p class="pressure" id="pressure">--<span>hPa</span></p>
+                        </div>
+                        <p>Pressure</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group2">
+                <div class="sunrise">
+                    <i class="bi bi-sunrise"></i>
+                    <div class="text">
+                        <div class="info-sunrise">
+                            <p class="sunrise-time" id="luminosity">--</p>
+                        </div>
+                        <p>Luminosity</p>
+                    </div>
+                </div>
+
+                <div class="sunset">
+                    <i class="bi bi-sunset"></i>
+                    <div class="text">
+                        <div class="info-sunset">
+                            <p class="sunset-time" id="soil-moisture">--</p>
+                        </div>
+                        <p>Soil Moisture</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchWeatherData() {
+    try {
+        const response = await fetch('/sensors/latest');
+        const data = await response.json();
+
+        document.getElementById('temperature').textContent = data.temperature || '--';
+        document.getElementById('humidity').textContent = data.humidity || '--';
+        document.getElementById('pressure').textContent = data.pressure || '--';
+        document.getElementById('luminosity').textContent = data.luminosity || '--';
+        document.getElementById('soil-moisture').textContent = data.soil_moisture || '--';
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+    }
+}
+
+// Fetch initial data and refresh every 5 seconds
+fetchWeatherData();
+setInterval(fetchWeatherData, 5000);
+
+    </script>
+</body>
+
+</html>

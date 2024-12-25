@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartGarden Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>SmartGarden Dashboard</h1>
+    <p>Temperature: {{ data.temperature }} °C</p>
+    <p>Humidity: {{ data.humidity }} %</p>
+    <p>Soil Moisture: {{ data.soil_moisture }}</p>
+    <p>Luminosity: {{ data.luminosity }}</p>
+    <button onclick="toggleLights()">Toggle Lights</button>
+    <button onclick="togglePump()">Toggle Pump</button>
+
+    <script>
+        async function toggleLights() {
+            const response = await fetch('/api/control/lights', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ on: true })
+            });
+            const result = await response.json();
+            console.log(result);
+            alert(`Lights: ${result.lights}`);
+        }
+
+        async function togglePump() {
+            const response = await fetch('/api/control/pump', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ on: true })
+            });
+            const result = await response.json();
+            console.log(result);
+            alert(`Pump: ${result.pump}`);
+        }
+    </script>
+</body>
+</html>

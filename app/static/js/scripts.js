@@ -1,0 +1,1 @@
+console.log('SmartGarden Dashboard Loaded');
