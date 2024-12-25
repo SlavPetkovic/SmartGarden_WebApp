@@ -7,8 +7,14 @@ import threading
 # Load environment variables from .env file
 load_dotenv()
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Get the environment setting from .env
-ENV = os.getenv("ENV", "development")
+ENV = os.getenv("ENV")
+
+if not ENV:
+    raise ValueError("ENV variable is not set in the .env file!")
 
 # Use `sensor_dev.py` if in development mode
 if ENV == "development":
