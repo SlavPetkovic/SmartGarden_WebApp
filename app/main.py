@@ -3,10 +3,30 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from app.db import fetch_latest_data, store_data
-from app.sensor_dev import read_sensors  # Use `sensor_dev` for simulated data
 from app.routes.api import router as api_router  # Import the API router
+import os
 import threading
 import time
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Determine the environment
+ENV = os.getenv("ENV")
+if not ENV:
+    raise ValueError("ENV variable is not set in the .env file!")
+
+# Dynamically import sensor methods based on the environment
+if ENV == "development":
+    print("Using simulated sensor data (development mode).")
+    from app.sensor_dev import read_sensors, control_led, control_pump
+else:
+    print("Using real sensor data (production mode).")
+    try:
+        from app.sensors import read_sensors, control_led, control_pump
+    except ImportError as e:
+        raise ImportError(f"Error importing real sensor modules: {e}")
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -51,22 +71,22 @@ async def dashboard(request: Request):
     return templates.TemplateResponse("index.html", context)
 
 def main_loop():
-    """Simulate storing random sensor data in the database."""
+    """Store sensor data in the database based on the environment."""
     while True:
         try:
-            # Step 1: Generate random sensor values
+            # Step 1: Generate sensor values (real or simulated based on ENV)
             data = read_sensors()
 
-            # Step 2: Store the simulated data in the database
+            # Step 2: Store the data in the database
             store_data(data)
 
             # Step 3: Print data to console (for debugging)
-            print(f"Stored simulated data: {data}")
+            print(f"Stored data: {data}")
 
-            # Delay for simulation
-            time.sleep(1)  # Simulate a 1-second interval between readings
+            # Delay for sensor readings
+            time.sleep(1)
         except Exception as e:
-            print(f"Error in simulated loop: {e}")
+            print(f"Error in sensor loop: {e}")
             break
 
 # Start the sensor loop in a background thread
