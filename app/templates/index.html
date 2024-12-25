@@ -56,9 +56,9 @@
         <p class="metric-label">Soil Moisture</p>
       </div>
 
-      <!-- Soil Temperature Card -->
+      <!-- Soil Temperature Card (moved directly after Soil Moisture) -->
       <div class="metric-card">
-        <i class="bx bx-thermometer icon" aria-label="Soil Temperature"></i>
+        <i class="bx bx-sun icon" aria-label="Soil Temperature"></i>
         <p class="metric-value" id="soil-temperature">--<span>°C</span></p>
         <p class="metric-label">Soil Temperature</p>
       </div>
@@ -74,11 +74,11 @@
         const data = await response.json();
 
         // Update the UI elements
-        document.getElementById('temperature').textContent    = data.temperature     || '--';
-        document.getElementById('humidity').textContent       = data.humidity        || '--';
-        document.getElementById('pressure').textContent       = data.pressure        || '--';
-        document.getElementById('luminosity').textContent     = data.luminosity      || '--';
-        document.getElementById('soil-moisture').textContent  = data.soil_moisture   || '--';
+        document.getElementById('temperature').textContent     = data.temperature     || '--';
+        document.getElementById('humidity').textContent        = data.humidity        || '--';
+        document.getElementById('pressure').textContent        = data.pressure        || '--';
+        document.getElementById('luminosity').textContent      = data.luminosity      || '--';
+        document.getElementById('soil-moisture').textContent   = data.soil_moisture   || '--';
         document.getElementById('soil-temperature').textContent = data.soil_temperature || '--';
       } catch (error) {
         console.error('Error fetching weather data:', error);
@@ -87,7 +87,7 @@
 
     // Fetch data on load and refresh every 5 seconds
     fetchWeatherData();
-    setInterval(fetchWeatherData, 1000);
+    setInterval(fetchWeatherData, 5000);
   </script>
 </body>
 </html>

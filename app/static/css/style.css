@@ -15,7 +15,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* remove if you want scrollable page */
+  overflow: hidden; /* remove if you want a scrollable page */
 }
 
 /* Background image as an overlay */
@@ -23,7 +23,7 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('../images/background3.jpg') center/cover no-repeat;
+  background: url('../images/background8.png') center/cover no-repeat;
   filter: brightness(0.8); /* slightly darken for readability */
   z-index: -1; /* place behind content */
 }
@@ -31,7 +31,7 @@ body::before {
 /* Main container holding everything */
 .main-container {
   width: 90%;
-  max-width: 1200px; /* adjust as needed */
+  max-width: 1200px; /* container restricts total width to 1200px */
   margin: 0 auto;
   text-align: center;
 }
@@ -46,15 +46,19 @@ body::before {
 /* Metrics container: flex layout */
 .metrics {
   display: flex;
-  flex-wrap: wrap; /* wrap to new line if needed on smaller screens */
+  flex-wrap: wrap; /* allows wrapping if space is too small, e.g., on mobile */
   gap: 20px;
   justify-content: center;
 }
 
 /* Individual metric card */
 .metric-card {
-  width: 200px; /* fixed width for each card; adjust as needed */
-  min-height: 200px;
+  /* Reduced width so 6 cards + gaps fit in 1200px:
+     6 cards * 180px = 1080px
+     5 gaps * 20px = 100px
+     Total = 1180px <= 1200px -> fits in one row */
+  width: 180px;
+  min-height: 180px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(30px);
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -79,20 +83,20 @@ body::before {
 
 /* Metric value (numeric reading) */
 .metric-value {
-  font-size: 36px;
+  font-size: 34px; /* slightly smaller to match narrower card */
   font-weight: 600;
   margin-bottom: 6px;
   position: relative;
 }
 .metric-value span {
-  font-size: 20px;
+  font-size: 18px;
   margin-left: 4px;
   position: relative;
 }
 
 /* Metric label (e.g. "Temperature", "Humidity") */
 .metric-label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -102,32 +106,8 @@ body::before {
     font-size: 28px;
   }
   .metric-card {
-    width: 160px;
-    min-height: 180px;
-  }
-  .icon {
-    font-size: 40px;
-  }
-  .metric-value {
-    font-size: 28px;
-  }
-  .metric-value span {
-    font-size: 16px;
-  }
-  .metric-label {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .dashboard-title {
-    font-size: 24px;
-    margin-bottom: 30px;
-  }
-  .metric-card {
-    width: 140px;
+    width: 140px;  /* further reduce on smaller screens if needed */
     min-height: 160px;
-    padding: 15px;
   }
   .icon {
     font-size: 36px;
@@ -140,5 +120,29 @@ body::before {
   }
   .metric-label {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  .metric-card {
+    width: 120px;
+    min-height: 140px;
+    padding: 15px;
+  }
+  .icon {
+    font-size: 30px;
+  }
+  .metric-value {
+    font-size: 20px;
+  }
+  .metric-value span {
+    font-size: 12px;
+  }
+  .metric-label {
+    font-size: 12px;
   }
 }
