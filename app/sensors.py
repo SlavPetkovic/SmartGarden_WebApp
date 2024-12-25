@@ -7,17 +7,16 @@ import threading
 # Load environment variables from .env file
 load_dotenv()
 
-# Load environment variables from .env file
-load_dotenv()
-
 # Get the environment setting from .env
 ENV = os.getenv("ENV")
 
 if not ENV:
     raise ValueError("ENV variable is not set in the .env file!")
+else:
+    print(f"Application running in {ENV} mode.")  # Debugging: Print the environment mode
 
 # Use `sensor_dev.py` if in development mode
-if ENV == "development":
+if ENV.strip().lower() == "development":
     print("Using simulated sensor data (development mode).")
     from app.sensor_dev import read_sensors, control_led, control_pump
 
@@ -40,7 +39,7 @@ if ENV == "development":
                 print(f"Error in simulated loop: {e}")
                 break
 
-else:
+elif ENV.strip().lower() == "production":
     # Production logic with real sensors
     try:
         print("Using real sensor data (production mode).")
@@ -130,6 +129,9 @@ else:
         print(f"Error importing Raspberry Pi libraries: {e}")
         print("Falling back to simulated sensor data (development mode).")
         from app.sensor_dev import read_sensors, control_led, control_pump
+
+else:
+    raise ValueError("Invalid ENV value in .env file. Use 'development' or 'production'.")
 
 # Run the main loop in a background thread
 if __name__ == "__main__":
