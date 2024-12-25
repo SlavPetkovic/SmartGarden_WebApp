@@ -87,17 +87,34 @@ body::before {
   font-weight: 600;
   margin-bottom: 6px;
   position: relative;
+  display: flex;
+  align-items: baseline; /* Align unit with the baseline of the number */
 }
-.metric-value span {
+
+.metric-value .value {
+  margin-right: 4px; /* Space between value and unit */
+}
+
+.metric-value .unit {
   font-size: 18px;
-  margin-left: 4px;
-  position: relative;
+  color: #ccc;
 }
 
 /* Metric label (e.g. "Temperature", "Humidity") */
 .metric-label {
   font-size: 16px;
   font-weight: 400;
+}
+
+/* Error state styling */
+.metric-card.error {
+  border-color: #ff4d4d;
+}
+
+.metric-card.error .metric-label::after {
+  content: " (Data Unavailable)";
+  color: #ff4d4d;
+  font-size: 14px;
 }
 
 /* Simple responsiveness */
@@ -115,7 +132,7 @@ body::before {
   .metric-value {
     font-size: 24px;
   }
-  .metric-value span {
+  .metric-value .unit {
     font-size: 14px;
   }
   .metric-label {
@@ -139,7 +156,7 @@ body::before {
   .metric-value {
     font-size: 20px;
   }
-  .metric-value span {
+  .metric-value .unit {
     font-size: 12px;
   }
   .metric-label {

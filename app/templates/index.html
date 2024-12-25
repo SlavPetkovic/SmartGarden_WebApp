@@ -15,7 +15,7 @@
   <!-- Main container to center everything -->
   <div class="main-container">
 
-    <!-- Title / Headline (optional) -->
+    <!-- Title / Headline -->
     <h1 class="dashboard-title">Smart Garden Dashboard</h1>
 
     <!-- Metrics container to hold individual cards -->
@@ -23,44 +23,56 @@
 
       <!-- Temperature Card -->
       <div class="metric-card">
-        <i class="bx bx-sun icon" aria-label="Temperature"></i>
-        <p class="metric-value" id="temperature">--<span>°C</span></p>
+        <i class="bi bi-thermometer-sun icon" aria-label="Temperature"></i>
+        <p class="metric-value" id="temperature">
+          <span class="value">--</span><span class="unit">°C</span>
+        </p>
         <p class="metric-label">Temperature</p>
       </div>
 
       <!-- Humidity Card -->
       <div class="metric-card">
-        <i class="bx bx-water icon" aria-label="Humidity"></i>
-        <p class="metric-value" id="humidity">--<span>%</span></p>
+        <i class="bi bi-droplet icon" aria-label="Humidity"></i>
+        <p class="metric-value" id="humidity">
+          <span class="value">--</span><span class="unit">%</span>
+        </p>
         <p class="metric-label">Humidity</p>
       </div>
 
       <!-- Pressure Card -->
       <div class="metric-card">
-        <i class="bx bx-wind icon" aria-label="Pressure"></i>
-        <p class="metric-value" id="pressure">--<span>hPa</span></p>
+        <i class="bi bi-wind icon" aria-label="Pressure"></i>
+        <p class="metric-value" id="pressure">
+          <span class="value">--</span><span class="unit">hPa</span>
+        </p>
         <p class="metric-label">Pressure</p>
       </div>
 
       <!-- Luminosity Card -->
       <div class="metric-card">
-        <i class="bi bi-sunrise icon" aria-label="Luminosity"></i>
-        <p class="metric-value" id="luminosity">--</p>
+        <i class="bi bi-sun-fill icon" aria-label="Luminosity"></i>
+        <p class="metric-value" id="luminosity">
+          <span class="value">--</span><span class="unit">lx</span>
+        </p>
         <p class="metric-label">Luminosity</p>
       </div>
 
       <!-- Soil Moisture Card -->
       <div class="metric-card">
-        <i class="bi bi-sunset icon" aria-label="Soil Moisture"></i>
-        <p class="metric-value" id="soil-moisture">--</p>
+        <i class="bi bi-moisture icon" aria-label="Soil Moisture"></i>
+        <p class="metric-value" id="soil-moisture">
+          <span class="value">--</span><span class="unit">%</span>
+        </p>
         <p class="metric-label">Soil Moisture</p>
       </div>
 
-      <!-- Soil Temperature Card (moved directly after Soil Moisture) -->
+      <!-- Soil Temperature Card -->
       <div class="metric-card">
-        <i class="bx bx-sun icon" aria-label="Soil Temperature"></i>
-        <p class="metric-value" id="soil-temperature">--<span>°C</span></p>
-        <p class="metric-label">Soil Temperature</p>
+        <i class="bi bi-thermometer-half icon" aria-label="Soil Temperature"></i>
+        <p class="metric-value" id="soil-temperature">
+          <span class="value">--</span><span class="unit">°C</span>
+        </p>
+        <p class="metric-label">Soil Temp</p>
       </div>
 
     </div> <!-- End .metrics -->
@@ -73,21 +85,29 @@
         const response = await fetch('/sensors/latest');
         const data = await response.json();
 
-        // Update the UI elements
-        document.getElementById('temperature').textContent     = data.temperature     || '--';
-        document.getElementById('humidity').textContent        = data.humidity        || '--';
-        document.getElementById('pressure').textContent        = data.pressure        || '--';
-        document.getElementById('luminosity').textContent      = data.luminosity      || '--';
-        document.getElementById('soil-moisture').textContent   = data.soil_moisture   || '--';
-        document.getElementById('soil-temperature').textContent = data.soil_temperature || '--';
+        // Update the UI elements by targeting the .value spans
+        document.querySelector('#temperature .value').textContent     = data.temperature     !== undefined ? data.temperature     : '--';
+        document.querySelector('#humidity .value').textContent        = data.humidity        !== undefined ? data.humidity        : '--';
+        document.querySelector('#pressure .value').textContent        = data.pressure        !== undefined ? data.pressure        : '--';
+        document.querySelector('#luminosity .value').textContent      = data.luminosity      !== undefined ? data.luminosity      : '--';
+        document.querySelector('#soil-moisture .value').textContent   = data.soil_moisture   !== undefined ? data.soil_moisture   : '--';
+        document.querySelector('#soil-temperature .value').textContent = data.soil_temperature !== undefined ? data.soil_temperature : '--';
       } catch (error) {
         console.error('Error fetching weather data:', error);
+
+        // Optionally, set all values to '--' on error
+        const valueElements = document.querySelectorAll('.metric-value .value');
+        valueElements.forEach(el => el.textContent = '--');
+
+        // Optionally, add an error class to metric cards
+        const metricCards = document.querySelectorAll('.metric-card');
+        metricCards.forEach(card => card.classList.add('error'));
       }
     }
 
     // Fetch data on load and refresh every 5 seconds
     fetchWeatherData();
-    setInterval(fetchWeatherData, 1000);
+    setInterval(fetchWeatherData, 5000);
   </script>
 </body>
 </html>
