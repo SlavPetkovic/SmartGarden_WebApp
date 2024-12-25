@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
+/* Global reset & font */
 * {
   margin: 0;
   padding: 0;
@@ -7,240 +8,137 @@
   font-family: "Poppins", sans-serif;
 }
 
+/* Body styling: full-screen background */
 body {
+  position: relative;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: url('../images/background3.jpg');
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
+  overflow: hidden; /* remove if you want scrollable page */
 }
 
-.container {
-  position: relative;
-  width: 400px;
-  height: 500px;
-  background: rgba(255, 255, 255, .1);
+/* Background image as an overlay */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../images/background3.jpg') center/cover no-repeat;
+  filter: brightness(0.8); /* slightly darken for readability */
+  z-index: -1; /* place behind content */
+}
+
+/* Main container holding everything */
+.main-container {
+  width: 90%;
+  max-width: 1200px; /* adjust as needed */
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Title for the dashboard */
+.dashboard-title {
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+/* Metrics container: flex layout */
+.metrics {
+  display: flex;
+  flex-wrap: wrap; /* wrap to new line if needed on smaller screens */
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual metric card */
+.metric-card {
+  width: 200px; /* fixed width for each card; adjust as needed */
+  min-height: 200px;
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(30px);
-  border: 2px solid rgba(255, 255, 255, .2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 20px;
   color: #fff;
-  transition: height .6s ease;
-}
-
-.search-box {
-  position: relative;
-  width: 100%;
-  height: 55px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+.metric-card:hover {
+  transform: translateY(-5px);
 }
 
-.search-box i {
-  position: absolute;
-  left: 10px;
-  font-size: 28px;
+/* Icon styling for each card */
+.icon {
+  font-size: 50px;
+  margin-bottom: 10px;
 }
 
-.search-box input {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, .2);
-  outline: none;
-  border-radius: 10px;
-  font-size: 22px;
-  color: #fff;
-  font-weight: 500;
-  text-transform: uppercase;
-  padding: 0 48px 0 42px;
-}
-
-.search-box input::placeholder {
-  color: #fff;
-  text-transform: capitalize;
-}
-
-.search-box button {
-  position: absolute;
-  right: 0;
-  width: 40px;
-  height: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 28px;
-  color: #fff;
-  padding: 0 40px 0 5px;
-  cursor: pointer;
-}
-
-#weather-image {
-    opacity: 1;
-    transition: opacity 1s; /* Adjust the duration as needed */
-}
-
-.weather-box {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.weather-box img {
-  width: 60%;
-}
-
-.weather-box .temperature {
+/* Metric value (numeric reading) */
+.metric-value {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 6px;
   position: relative;
-  font-size: 45px;
-  line-height: 1;
-  font-weight: 700;
-  margin: 20px 0 6px -30px;
 }
-
-.weather-box .city {
-font-size: 30px;
-  font-weight: 500;
-}
-
-
-.weather-box .temperature span {
-  position: absolute;
-  font-size: 24px;
+.metric-value span {
+  font-size: 20px;
   margin-left: 4px;
+  position: relative;
 }
 
-.weather-box .description {
-  font-size: 22px;
-  font-weight: 500;
-  text-transform: capitalize;
+/* Metric label (e.g. "Temperature", "Humidity") */
+.metric-label {
+  font-size: 18px;
+  font-weight: 400;
 }
 
-/*.weather-details {*/
-/*  position: absolute;*/
-/*  bottom: 40px;*/
-/*  left: 0;*/
-/*  width: 100%;*/
-/*  padding: 0 20px;*/
-/*  display: flex;*/
-/*  visibility: visible;*/
-/*  opacity: 1;*/
-/*  transition: visibility 1s, opacity 1s;*/
-/*}*/
-.weather-details {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  width: 100%;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column; /* Stack the groups vertically */
-  align-items: center; /* Center both groups vertically */
-  justify-content: center; /* Center both groups horizontally */
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 1s, opacity 1s;
+/* Simple responsiveness */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 28px;
+  }
+  .metric-card {
+    width: 160px;
+    min-height: 180px;
+  }
+  .icon {
+    font-size: 40px;
+  }
+  .metric-value {
+    font-size: 28px;
+  }
+  .metric-value span {
+    font-size: 16px;
+  }
+  .metric-label {
+    font-size: 16px;
+  }
 }
 
-.group2 {
-  display: flex;
-  justify-content: space-between; /* Stack elements in group2 horizontally with space between them */
-}
-.sunrise {
-  /* ... other styles ... */
-  margin-right: 40px; /* Increase the margin between sunrise and sunset */
-}
-.sunrise {
-   white-space: nowrap;
-  /* ... other styles ... */
-}
-
-.sunset {
-   white-space: nowrap;
-  /* ... other styles ... */
-}
-
-.group1 {
-  display: flex;
-  justify-content: space-between; /* Stack elements in group1 horizontally with space between them */
-
-}
-.group1 {
-  margin-bottom: 10px; /* Add spacing between group1 and group2 */
-}
-
-.humidity {
-  /* ... other styles ... */
-  margin-right: 40px; /* Increase the margin between humidity and pressure */
-}
-.pressure {
-  /* ... other styles ... */
-}
-
-.weather-details .humidity,
-
-
-.weather-details .pressure {
-  display: flex;
-  align-items: center;
-  width: 50%;
-  transform: translateY(0);
-  transition: transform 1s ease;
-}
-
-
-.weather-details .sunrise,
-.weather-details .sunset {
-  display: flex;
-  align-items: center;
-  width: 100%; /* Set to 100% to stack them vertically */
-  transform: translateY(0);
-  transition: transform 1s ease;
-}
-
-
-
-.weather-details i {
-  font-size: 56px;
-  margin-right: 10px;
-}
-
-.weather-details span {
-  display: inline-block;
-  font-size: 22px;
-  font-weight: 500;
-}
-
-.not-found {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  margin-top: 110px;
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 1s, opacity 1s;
-}
-
-.not-found img {
-  width: 65%;
-}
-
-.not-found p {
-  font-size: 22px;
-  font-weight: 500;
-  margin-top: 12px;
-}
-
-.city-hide {
-  display: none;
-}
-
-.bx-icon {
-    font-size: 150px;
-    line-height: 150px;
+@media (max-width: 480px) {
+  .dashboard-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  .metric-card {
+    width: 140px;
+    min-height: 160px;
+    padding: 15px;
+  }
+  .icon {
+    font-size: 36px;
+  }
+  .metric-value {
+    font-size: 24px;
+  }
+  .metric-value span {
+    font-size: 14px;
+  }
+  .metric-label {
+    font-size: 14px;
+  }
 }
