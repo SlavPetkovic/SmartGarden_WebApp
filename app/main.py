@@ -84,7 +84,7 @@ def main_loop():
             print(f"Stored data: {data}")
 
             # Delay for sensor readings
-            time.sleep(1)
+            time.sleep(60)
         except Exception as e:
             print(f"Error in sensor loop: {e}")
             break

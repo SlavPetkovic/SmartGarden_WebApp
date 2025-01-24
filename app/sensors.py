@@ -32,7 +32,7 @@ if ENV == "development":
                 print(f"Stored simulated data: {data}")
 
                 # Delay for simulation
-                time.sleep(1)  # Simulate a 1-second interval between readings
+                time.sleep(60)  # Simulate a 1-second interval between readings
             except Exception as e:
                 print(f"Error in simulated loop: {e}")
                 break
@@ -117,7 +117,7 @@ else:
                     print(f"Stored real sensor data: {data}")
 
                     # Delay for real sensor readings
-                    time.sleep(1)
+                    time.sleep(60)
                 except Exception as e:
                     print(f"Error in production loop: {e}")
                     break
