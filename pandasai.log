@@ -1,0 +1,1275 @@
+2025-02-07 01:27:01 [INFO] Question: whats the latest temperature?
+2025-02-07 01:27:01 [INFO] Running PandaAI with openai LLM...
+2025-02-07 01:27:01 [INFO] Prompt ID: ab7f332f-3a0f-4415-a08e-7deb5e182e3f
+2025-02-07 01:27:01 [INFO] Generating new code...
+2025-02-07 01:27:01 [INFO] Using Prompt: <tables>
+
+<table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ whats the latest temperature?
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-07 01:27:05 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:27:05 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Execute SQL query to get the latest temperature
+sql_query = """
+SELECT Temperature 
+FROM table_a92ee455a3f399b158c538ac53378eb7 
+ORDER BY TimeStamp DESC 
+LIMIT 1
+"""
+latest_temperature_df = execute_sql_query(sql_query)
+
+# Extract the latest temperature value
+latest_temperature = latest_temperature_df['Temperature'].iloc[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": latest_temperature
+}
+2025-02-07 01:27:05 [INFO] Validating code requirements...
+2025-02-07 01:27:05 [INFO] Code validation successful.
+2025-02-07 01:27:05 [INFO] Cleaning the generated code...
+2025-02-07 01:27:05 [INFO] Executing code: import pandas as pd
+sql_query = """
+SELECT Temperature 
+FROM table_a92ee455a3f399b158c538ac53378eb7 
+ORDER BY TimeStamp DESC 
+LIMIT 1
+"""
+latest_temperature_df = execute_sql_query(sql_query)
+latest_temperature = latest_temperature_df['Temperature'].iloc[0]
+result = {'type': 'number', 'value': latest_temperature}
+2025-02-07 01:27:05 [INFO] Response generated successfully.
+2025-02-07 01:27:58 [INFO] Question: Can you create linechart of all temperature values by hour and date?
+2025-02-07 01:27:58 [INFO] Running PandaAI with openai LLM...
+2025-02-07 01:27:58 [INFO] Prompt ID: 4e8a7c4e-742c-404b-aef4-a425bd30ca2f
+2025-02-07 01:27:58 [INFO] Generating new code...
+2025-02-07 01:27:58 [INFO] Using Prompt: <tables>
+
+<table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Can you create linechart of all temperature values by hour and date?
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-07 01:28:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:28:08 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get temperature data aggregated by date and hour
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+
+# Fetch the data into a DataFrame
+temperature_data = execute_sql_query(sql_query)
+
+# Create a line chart
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))  # Set x-ticks for each hour
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+
+# Save the plot as a PNG file
+plot_filename = 'temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+
+# Declare result var: 
+result = {
+    "type": "plot",
+    "value": plot_filename
+}
+2025-02-07 01:28:08 [INFO] Validating code requirements...
+2025-02-07 01:28:08 [INFO] Code validation successful.
+2025-02-07 01:28:08 [INFO] Cleaning the generated code...
+2025-02-07 01:28:08 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2025-02-07 01:28:08 [INFO] Retrying execution (1/3)...
+2025-02-07 01:28:08 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 123, in _execute_local_sql_query
+    with duckdb.connect() as con:
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 129, in _execute_local_sql_query
+    result = con.sql(query).df()
+duckdb.duckdb.CatalogException: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 15, in <module>
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 149, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 133, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 160, in execute_with_retries
+    result = self.execute_code(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-07 01:28:08 [INFO] Using Prompt: <table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+The user asked the following question:
+### QUERY
+ Can you create linechart of all temperature values by hour and date?
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-07 01:28:14 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:28:14 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# SQL query to get average temperature by date and hour
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+
+# Execute the SQL query
+temperature_data = execute_sql_query(sql_query)
+
+# Create a line chart
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+
+# Return the result
+result = {'type': 'plot', 'value': plot_filename}
+2025-02-07 01:28:14 [INFO] Validating code requirements...
+2025-02-07 01:28:14 [INFO] Code validation successful.
+2025-02-07 01:28:14 [INFO] Cleaning the generated code...
+2025-02-07 01:28:14 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2025-02-07 01:28:14 [INFO] Retrying execution (2/3)...
+2025-02-07 01:28:14 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 123, in _execute_local_sql_query
+    with duckdb.connect() as con:
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 129, in _execute_local_sql_query
+    result = con.sql(query).df()
+duckdb.duckdb.CatalogException: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 15, in <module>
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 149, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 133, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 160, in execute_with_retries
+    result = self.execute_code(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-07 01:28:14 [INFO] Using Prompt: <table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+The user asked the following question:
+### QUERY
+ Can you create linechart of all temperature values by hour and date?
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-07 01:28:24 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:28:24 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# SQL query to get average temperature by date and hour
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+
+# Execute the SQL query and store the result in a DataFrame
+temperature_data = execute_sql_query(sql_query)
+
+# Create a line chart for average temperature by hour and date
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+
+# Set chart title and labels
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))  # Set x-ticks for each hour
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+
+# Return the result with the plot filename
+result = {'type': 'plot', 'value': plot_filename}
+2025-02-07 01:28:24 [INFO] Validating code requirements...
+2025-02-07 01:28:24 [INFO] Code validation successful.
+2025-02-07 01:28:24 [INFO] Cleaning the generated code...
+2025-02-07 01:28:24 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2025-02-07 01:28:24 [INFO] Retrying execution (3/3)...
+2025-02-07 01:28:24 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 123, in _execute_local_sql_query
+    with duckdb.connect() as con:
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 129, in _execute_local_sql_query
+    result = con.sql(query).df()
+duckdb.duckdb.CatalogException: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 15, in <module>
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 149, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 133, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 160, in execute_with_retries
+    result = self.execute_code(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-07 01:28:24 [INFO] Using Prompt: <table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+The user asked the following question:
+### QUERY
+ Can you create linechart of all temperature values by hour and date?
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-07 01:28:31 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:28:31 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# SQL query to get average temperature by date and hour
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+
+# Execute the SQL query
+temperature_data = execute_sql_query(sql_query)
+
+# Create a line chart
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+
+# Return the result
+result = {'type': 'plot', 'value': plot_filename}
+2025-02-07 01:28:31 [INFO] Validating code requirements...
+2025-02-07 01:28:31 [INFO] Code validation successful.
+2025-02-07 01:28:31 [INFO] Cleaning the generated code...
+2025-02-07 01:28:31 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    DATE(TimeStamp) AS Date,
+    HOUR(TimeStamp) AS Hour,
+    AVG(Temperature) AS AvgTemperature
+FROM 
+    table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY 
+    Date, Hour
+ORDER BY 
+    Date, Hour;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(12, 6))
+for date in temperature_data['Date'].unique():
+    daily_data = temperature_data[temperature_data['Date'] == date]
+    plt.plot(daily_data['Hour'], daily_data['AvgTemperature'], marker='o', label=date)
+plt.title('Average Temperature by Hour and Date')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Average Temperature (°F)')
+plt.xticks(range(24))
+plt.legend(title='Date')
+plt.grid()
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2025-02-07 01:28:31 [INFO] Max retries reached. Error: Code execution failed
+2025-02-07 01:28:31 [INFO] Processing failed with error: Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 123, in _execute_local_sql_query
+    with duckdb.connect() as con:
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 129, in _execute_local_sql_query
+    result = con.sql(query).df()
+duckdb.duckdb.CatalogException: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 15, in <module>
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 149, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 133, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 245, in _process_query
+    result = self.execute_with_retries(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 160, in execute_with_retries
+    result = self.execute_code(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-07 01:28:31 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:28:31 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:28:31 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:28:31 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:28:31 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:28:31 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:29:23 [INFO] Question: I need a chart that will show maximum temperature for each day
+2025-02-07 01:29:23 [INFO] Running PandaAI with openai LLM...
+2025-02-07 01:29:23 [INFO] Prompt ID: 49c63e4a-b357-4820-b871-ba8152d70fc3
+2025-02-07 01:29:23 [INFO] Generating new code...
+2025-02-07 01:29:23 [INFO] Using Prompt: <tables>
+
+<table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ I need a chart that will show maximum temperature for each day
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-07 01:29:31 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:29:31 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get maximum temperature for each day
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+
+# Fetch the data into a DataFrame
+temperature_data = execute_sql_query(sql_query)
+
+# Plotting the data
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+
+# Save the plot
+chart_filename = 'max_temperature_chart.png'
+plt.savefig(chart_filename)
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": chart_filename
+}
+2025-02-07 01:29:31 [INFO] Validating code requirements...
+2025-02-07 01:29:31 [INFO] Code validation successful.
+2025-02-07 01:29:31 [INFO] Cleaning the generated code...
+2025-02-07 01:29:31 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+result = {'type': 'plot', 'value': chart_filename}
+2025-02-07 01:29:31 [INFO] Retrying execution (1/3)...
+2025-02-07 01:29:31 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 123, in _execute_local_sql_query
+    with duckdb.connect() as con:
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 129, in _execute_local_sql_query
+    result = con.sql(query).df()
+duckdb.duckdb.CatalogException: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 9, in <module>
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 149, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 133, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 160, in execute_with_retries
+    result = self.execute_code(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-07 01:29:31 [INFO] Using Prompt: <table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+The user asked the following question:
+### QUERY
+ I need a chart that will show maximum temperature for each day
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+temperature_data = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+result = {'type': 'plot', 'value': chart_filename}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-07 01:29:37 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:29:37 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# SQL query to get maximum temperature for each day
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+
+# Execute the SQL query and store the result in a DataFrame
+temperature_data = execute_sql_query(sql_query)
+
+# Ensure the 'Date' column is in datetime format
+temperature_data['Date'] = pd.to_datetime(temperature_data['Date'])
+
+# Plotting the data
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+
+# Save the chart to a file
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+
+# Return the result with the chart filename
+result = {'type': 'plot', 'value': chart_filename}
+2025-02-07 01:29:37 [INFO] Validating code requirements...
+2025-02-07 01:29:37 [INFO] Code validation successful.
+2025-02-07 01:29:37 [INFO] Cleaning the generated code...
+2025-02-07 01:29:37 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+temperature_data = execute_sql_query(sql_query)
+temperature_data['Date'] = pd.to_datetime(temperature_data['Date'])
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+result = {'type': 'plot', 'value': chart_filename}
+2025-02-07 01:29:37 [INFO] Retrying execution (2/3)...
+2025-02-07 01:29:37 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 123, in _execute_local_sql_query
+    with duckdb.connect() as con:
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 129, in _execute_local_sql_query
+    result = con.sql(query).df()
+duckdb.duckdb.CatalogException: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 9, in <module>
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 149, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 133, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 160, in execute_with_retries
+    result = self.execute_code(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-07 01:29:37 [INFO] Using Prompt: <table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+The user asked the following question:
+### QUERY
+ I need a chart that will show maximum temperature for each day
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+temperature_data = execute_sql_query(sql_query)
+temperature_data['Date'] = pd.to_datetime(temperature_data['Date'])
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+result = {'type': 'plot', 'value': chart_filename}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-07 01:29:44 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:29:44 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# SQL query to get maximum temperature for each day
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+
+# Execute the SQL query and store the result in a DataFrame
+temperature_data = execute_sql_query(sql_query)
+
+# Convert the 'Date' column to datetime format
+temperature_data['Date'] = pd.to_datetime(temperature_data['Date'])
+
+# Create a plot for maximum daily temperature
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+
+# Save the chart to a file
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+
+# Return the result with the chart filename
+result = {'type': 'plot', 'value': chart_filename}
+2025-02-07 01:29:44 [INFO] Validating code requirements...
+2025-02-07 01:29:44 [INFO] Code validation successful.
+2025-02-07 01:29:44 [INFO] Cleaning the generated code...
+2025-02-07 01:29:44 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+temperature_data = execute_sql_query(sql_query)
+temperature_data['Date'] = pd.to_datetime(temperature_data['Date'])
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+result = {'type': 'plot', 'value': chart_filename}
+2025-02-07 01:29:44 [INFO] Retrying execution (3/3)...
+2025-02-07 01:29:44 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 123, in _execute_local_sql_query
+    with duckdb.connect() as con:
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 129, in _execute_local_sql_query
+    result = con.sql(query).df()
+duckdb.duckdb.CatalogException: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 9, in <module>
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 149, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 133, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 160, in execute_with_retries
+    result = self.execute_code(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-07 01:29:44 [INFO] Using Prompt: <table table_name="table_a92ee455a3f399b158c538ac53378eb7" dimensions="100x10">
+id,TimeStamp,Temperature,Gas,Humidity,Pressure,Altitude,Luminosity,soil_moisture,soil_temperature
+2,2025-02-07 00:33:58.311051,68.8,129,72.44,1008.07,1046.21,99,676,59.79
+1,2025-02-07 00:16:12.446482,75.0,100,50.0,1000.0,1000.0,105,400,25.0
+3,2025-02-06 23:33:58.311051,67.14,130,56.33,991.57,1020.55,81,494,56.26
+4,2025-02-06 22:33:58.311051,74.11,111,53.82,1009.79,1004.06,138,676,62.63
+5,2025-02-06 21:33:58.311051,77.84,108,47.33,1006.4,1026.14,81,446,75.12
+</table>
+
+
+The user asked the following question:
+### QUERY
+ I need a chart that will show maximum temperature for each day
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+temperature_data = execute_sql_query(sql_query)
+temperature_data['Date'] = pd.to_datetime(temperature_data['Date'])
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+result = {'type': 'plot', 'value': chart_filename}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-07 01:29:49 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-07 01:29:49 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# SQL query to get maximum temperature for each day
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+
+# Execute the SQL query and store the result in a DataFrame
+temperature_data = execute_sql_query(sql_query)
+
+# Ensure the 'Date' column is in datetime format
+temperature_data['Date'] = pd.to_datetime(temperature_data['Date'])
+
+# Create the plot
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+
+# Save the chart to a file
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+
+# Return the result with the path to the saved chart
+result = {'type': 'plot', 'value': chart_filename}
+2025-02-07 01:29:49 [INFO] Validating code requirements...
+2025-02-07 01:29:49 [INFO] Code validation successful.
+2025-02-07 01:29:49 [INFO] Cleaning the generated code...
+2025-02-07 01:29:49 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT DATE(TimeStamp) AS Date, MAX(Temperature) AS MaxTemperature
+FROM table_a92ee455a3f399b158c538ac53378eb7
+GROUP BY DATE(TimeStamp)
+ORDER BY Date;
+"""
+temperature_data = execute_sql_query(sql_query)
+temperature_data['Date'] = pd.to_datetime(temperature_data['Date'])
+plt.figure(figsize=(10, 5))
+plt.plot(temperature_data['Date'], temperature_data['MaxTemperature'], marker='o')
+plt.title('Maximum Daily Temperature')
+plt.xlabel('Date')
+plt.ylabel('Max Temperature (°F)')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+chart_filename = 'exports/charts/temp_chart.png'
+plt.savefig(chart_filename)
+result = {'type': 'plot', 'value': chart_filename}
+2025-02-07 01:29:49 [INFO] Max retries reached. Error: Code execution failed
+2025-02-07 01:29:49 [INFO] Processing failed with error: Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 123, in _execute_local_sql_query
+    with duckdb.connect() as con:
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 129, in _execute_local_sql_query
+    result = con.sql(query).df()
+duckdb.duckdb.CatalogException: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 9, in <module>
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 149, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 133, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Scalar Function with name date does not exist!
+Did you mean "datesub"?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 245, in _process_query
+    result = self.execute_with_retries(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 160, in execute_with_retries
+    result = self.execute_code(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/slavoljubpetkovic/PycharmProjects/SmartGarden_WebApp/.venv/lib/python3.10/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-07 01:29:49 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:29:49 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:29:49 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:29:49 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:29:49 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-07 01:29:49 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
